@@ -30,8 +30,8 @@ This is a simple application with loadbalancer with [Nest](https://github.com/ne
 
 Let's simulate that this application is hosted on a VPS server with the following resources:
 
-vCPU: 1
-VRAM: 1GB
+- vCPU: 1
+- VRAM: 1GB
 
 The idea of an application with a loadbalancer is to distribute the workload of requests, but we also need to be aware of the resources available on our VPS, after all, it is not every time that we will be on a VPS with a lot of resources.
 

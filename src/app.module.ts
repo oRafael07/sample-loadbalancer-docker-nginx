@@ -7,9 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'mysql',
-      port: 3306,
+      type: 'postgres',
+      host: 'postgres',
+      port: 5432,
       username: 'admin',
       password: 'root',
       database: 'api-trilha-devops',

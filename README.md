@@ -45,6 +45,12 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Deploy App
+
+```bash
+$ docker compose up --build -d
+```
+
 ## Test
 
 ```bash

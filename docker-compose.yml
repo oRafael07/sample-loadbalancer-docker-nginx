@@ -1,0 +1,77 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=api-trilha-devops
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=root
+    networks:
+      - primeira-network
+
+  backend_1:
+    build:
+      context: .
+    container_name: backend-1
+    ports:
+      - "8080"
+    environment:
+      - APP_PORT=8080
+    depends_on:
+      - mysql
+    networks:
+      - primeira-network
+  
+  backend_2:
+    build:
+      context: .
+    container_name: backend-2
+    ports:
+      - "8081"
+    environment:
+      - APP_PORT=8081
+    depends_on:
+      - mysql
+    networks:
+      - primeira-network
+
+  backend_3:
+    build:
+      context: .
+    container_name: backend-3
+    ports:
+      - "8082"
+    environment:
+      - APP_PORT=8082
+    depends_on:
+      - mysql
+    networks:
+      - primeira-network
+  
+  loadbalancer:
+    build:
+      context: ./nginx
+    container_name: nginx
+    networks:
+      - primeira-network
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend_1
+      - backend_2
+      - backend_3
+
+networks:
+  primeira-network:
+    name: primeira-network
+    driver: bridge
+
+volumes:
+  db:

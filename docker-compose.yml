@@ -4,6 +4,7 @@ services:
   postgres:
     image: postgres:alpine3.19
     container_name: postgres
+    restart: always
     volumes:
       - db:/var/lib/postgresql/data
     ports:
@@ -24,6 +25,7 @@ services:
     build:
       context: .
     container_name: backend-1
+    restart: always
     ports:
       - "8080"
     environment:
@@ -42,6 +44,7 @@ services:
     build:
       context: .
     container_name: backend-2
+    restart: always
     ports:
       - "8081"
     environment:
@@ -60,6 +63,7 @@ services:
     build:
       context: .
     container_name: backend-3
+    restart: always
     ports:
       - "8082"
     environment:
@@ -78,6 +82,7 @@ services:
     build:
       context: ./nginx
     container_name: nginx
+    restart: always
     networks:
       - primeira-network
     ports:
